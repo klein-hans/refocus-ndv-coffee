@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Coffee from './pages/Coffee';
+import Coffee, { coffeeLoader } from './pages/Coffee';
 import RootLayout from './layouts/RootLayout';
 import MenuLayout from './layouts/MenuLayout';
 import MainCourse from './pages/MainCourse';
@@ -20,7 +20,12 @@ const router = createBrowserRouter(
             <Route index element={<Home />} />
             <Route path='about' element={<About />} />
             <Route path='menu' element={<MenuLayout />}>
-                <Route index path='coffee' element={<Coffee />} />
+                <Route
+                    index
+                    path='coffee'
+                    element={<Coffee />}
+                    loader={coffeeLoader}
+                />
                 <Route path='main-course' element={<MainCourse />} />{' '}
             </Route>
             <Route path='*' element={<NotFound />} />
