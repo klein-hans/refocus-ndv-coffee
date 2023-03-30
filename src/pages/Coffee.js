@@ -1,9 +1,7 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, NavLink } from 'react-router-dom';
 
 export default function Coffee() {
     const coffee = useLoaderData();
-    console.log('coffee');
-    console.log(coffee);
 
     return (
         <div className='coffee'>
@@ -13,11 +11,12 @@ export default function Coffee() {
                         <img
                             src={item.image}
                             alt={`coffee-${index}`}
-                            width={170}
-                            height={170}
+                            width={250}
+                            height={250}
                         />
                         <h4>{item.title}</h4>
                         <p className='truncate'>{item.description}</p>
+                        <NavLink to={`${item.id}`}>See Details</NavLink>
                     </div>
                 ))}
             </div>

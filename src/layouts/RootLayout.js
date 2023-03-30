@@ -9,6 +9,7 @@ function RootLayout() {
                     <NavLink to='/'>Home</NavLink>
                     <NavLink to='menu/coffee'>Menu</NavLink>
                     <NavLink to='about'>About</NavLink>
+                    <NavLink to='contact'>Contact</NavLink>
                 </nav>
             </header>
             <main>

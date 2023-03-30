@@ -1,21 +1,36 @@
-function MainCourse() {
+import { useLoaderData } from 'react-router-dom';
+
+export default function MainCourse() {
+    const mainCourse = useLoaderData();
+    console.log('mainCourse');
+
+    const fiteredMainCourse = mainCourse.filter(
+        (item) => item.description !== '' && item.course === 'Main Course'
+    );
+    const slicedMainCourse = fiteredMainCourse.slice(0, 6);
+    console.log(slicedMainCourse);
     return (
-        <div>
-            <h3>MainCourse</h3>
+        <div className='mainCourse'>
             <div className='flex'>
-                <div className='item'>
-                    <img src='' alt='' />
-                    <p>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing
-                        elit. Minima quos ex id eos sed, aspernatur rerum.
-                        Asperiores recusandae atque beatae rem, exercitationem,
-                        eligendi veniam qui, quod reprehenderit praesentium
-                        officia tempore.
-                    </p>
-                </div>
+                {slicedMainCourse.map((item, index) => (
+                    <div className='item' key={index}>
+                        <img
+                            src={item.photoUrl}
+                            alt={`main-course-${index}`}
+                            width={250}
+                            height={250}
+                        />
+                        <h4>{item.title}</h4>
+                        <p className='truncate'>{item.description}</p>
+                    </div>
+                ))}
             </div>
         </div>
     );
 }
 
-export default MainCourse;
+// data loader
+export const mainCourseLoader = async () => {
+    const res = await fetch('https://api.sampleapis.com/recipes/recipes');
+    return res.json();
+};
