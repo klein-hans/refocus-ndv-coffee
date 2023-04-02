@@ -8,19 +8,36 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
-import Coffee from './pages/Coffee';
+import Coffee, { coffeeLoader } from './pages/Coffee';
 import RootLayout from './layouts/RootLayout';
 import MenuLayout from './layouts/MenuLayout';
 import MainCourse from './pages/MainCourse';
 import NotFound from './pages/NotFound';
+import CoffeeDetails, { coffeeDetailsLoader } from './pages/CoffeeDetails';
+import Contact, { contactAction } from './pages/Contact';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path='about' element={<About />} />
+            <Route
+                path='contact'
+                element={<Contact />}
+                action={contactAction}
+            />
             <Route path='menu' element={<MenuLayout />}>
-                <Route index path='coffee' element={<Coffee />} />
+                <Route
+                    index
+                    path='coffee'
+                    element={<Coffee />}
+                    loader={coffeeLoader}
+                />
+                <Route
+                    path='coffee/:id'
+                    element={<CoffeeDetails />}
+                    loader={coffeeDetailsLoader}
+                />
                 <Route path='main-course' element={<MainCourse />} />{' '}
             </Route>
             <Route path='*' element={<NotFound />} />
